@@ -31,11 +31,18 @@ export const createItem = async (title, body, created_by, number_of_items) => {
 	//get relatively unique number
 	const item_id = Date.now();
 	const [result] = await pool.query(
-		"INSERT INTO items (item_id, title, body, created_by, number_of_items) VALUES (?, ?, ?, ?)",
+		"INSERT INTO items (item_id, title, body, created_by, number_of_items) VALUES (?, ?, ?, ?, ?)",
 		[item_id, title, body, created_by, number_of_items]
 	);
 	const id = result.insertId;
 
 	//Get the newly created item
 	return getItem(id);
+};
+
+export const deleteItem = async (id) => {
+	const [result] = await pool.query("DELETE FROM items WHERE id = ?", [id]);
+
+	//result.affectedRows will be 0 if item is not found
+	return result.affectedRows;
 };
