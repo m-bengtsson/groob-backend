@@ -1,5 +1,11 @@
 import express from "express";
-import { getItems, getItem, createItem, deleteItem } from "./database.js";
+import {
+	getItems,
+	getItem,
+	createItem,
+	deleteItem,
+	getUsers,
+} from "./database.js";
 
 const app = express();
 
@@ -34,6 +40,11 @@ app.delete("/items/:id", async (req, res) => {
 	}
 
 	res.sendStatus(200);
+});
+
+app.get("/users", async (req, res) => {
+	const users = await getUsers();
+	res.send(users);
 });
 
 app.listen(8080, () => {
