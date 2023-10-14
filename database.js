@@ -22,14 +22,17 @@ export const getItems = async () => {
 //Otherwise it could lead to SQL injection attacks
 // syntax is called prepared statement
 export const getItem = async (id) => {
-	const [rows] = await pool.query("SELECT * FROM items WHERE id = ?", [id]);
+	const [rows] = await pool.query("SELECT * FROM items WHERE item_id = ?", [
+		id,
+	]);
 	return rows[0]; //Want the first object in the array
 	//returns undefined if the id does not exist
 };
 
 export const createItem = async (title, body, created_by, number_of_items) => {
-	//get relatively unique number
-	const item_id = Date.now();
+	//change item_id later
+	const item_id = Math.floor(Math.random() * 10000);
+	console.log("ID", item_id);
 	const [result] = await pool.query(
 		"INSERT INTO items (item_id, title, body, created_by, number_of_items) VALUES (?, ?, ?, ?, ?)",
 		[item_id, title, body, created_by, number_of_items]
@@ -41,7 +44,9 @@ export const createItem = async (title, body, created_by, number_of_items) => {
 };
 
 export const deleteItem = async (id) => {
-	const [result] = await pool.query("DELETE FROM items WHERE id = ?", [id]);
+	const [result] = await pool.query("DELETE FROM items WHERE item_id = ?", [
+		id,
+	]);
 
 	//result.affectedRows will be 0 if item is not found
 	return result.affectedRows;
