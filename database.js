@@ -51,3 +51,8 @@ export const deleteItem = async (id) => {
 	//result.affectedRows will be 0 if item is not found
 	return result.affectedRows;
 };
+
+export const getUsers = async () => {
+	const [result] = await pool.query("SELECT * from users");
+	return result;
+};
