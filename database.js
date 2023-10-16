@@ -32,14 +32,12 @@ export const getItem = async (id) => {
 export const createItem = async (title, body, created_by, number_of_items) => {
    //change item_id later
    const item_id = Math.floor(Math.random() * 10000);
-   const [result] = await pool.query(
+   await pool.query(
       "INSERT INTO items (item_id, title, body, created_by, number_of_items) VALUES (?, ?, ?, ?, ?)",
       [item_id, title, body, created_by, number_of_items]
    );
-   const id = result.insertId;
-
    //Get the newly created item
-   return getItem(id);
+   return getItem(item_id);
 };
 
 export const deleteItem = async (id) => {
@@ -63,11 +61,12 @@ export const getUser = async (id) => {
 
 export const createUser = async ({ name, email, password }) => {
    const uid = Math.floor(Math.random() * 10000);
-   const result = await pool.query("INSERT INTO users (uid, name, email, password) VALUES(?, ?, ?, ?)", [uid, name, email, password]);
-   return result;
+   await pool.query("INSERT INTO users (uid, name, email, password) VALUES(?, ?, ?, ?)", [uid, name, email, password]);
+   return getUser(uid);
 };
 const user = {
-   name: "adler",
-   email: "adler@adler.com",
+   name: "samson",
+   email: "samson@samson.com",
    password: "password123",
 }
+createUser(user)
