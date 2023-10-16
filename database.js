@@ -60,3 +60,14 @@ export const getUser = async (id) => {
    const [result] = await pool.query("SELECT * from users WHERE uid = ?", [id]);
    return result[0];
 };
+
+export const createUser = async ({ name, email, password }) => {
+   const uid = Math.floor(Math.random() * 10000);
+   const result = await pool.query("INSERT INTO users (uid, name, email, password) VALUES(?, ?, ?, ?)", [uid, name, email, password]);
+   return result;
+};
+const user = {
+   name: "adler",
+   email: "adler@adler.com",
+   password: "password123",
+}
