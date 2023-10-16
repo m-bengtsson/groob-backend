@@ -6,7 +6,8 @@ import {
    deleteItem,
    getUsers,
    getUser,
-   createUser
+   createUser,
+   updateUser
 } from "./database.js";
 
 const app = express();
@@ -56,13 +57,20 @@ app.get("/users/:id", async (req, res) => {
 });
 
 app.post("/users", async (req, res) => {
-   console.log("BODY", req.body);
-   const { name, email, password } = req.body;
 
    const created = await createUser(req.body);
 
    res.status(201).send(created);
 });
+
+app.put("/users/:id", async (req, res) => {
+
+   const id = req.params.id
+   const updated = await updateUser(req.body, id);
+
+   res.status(201).send(updated);
+});
+
 
 app.listen(8080, () => {
    console.log("Server running on port 8080");
