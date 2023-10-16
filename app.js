@@ -5,7 +5,8 @@ import {
    createItem,
    deleteItem,
    getUsers,
-   getUser
+   getUser,
+   createUser
 } from "./database.js";
 
 const app = express();
@@ -52,6 +53,15 @@ app.get("/users/:id", async (req, res) => {
    const id = req.params.id;
    const user = await getUser(id);
    res.send(user);
+});
+
+app.post("/users", async (req, res) => {
+   console.log("BODY", req.body);
+   const { name, email, password } = req.body;
+
+   const created = await createUser(req.body);
+
+   res.status(201).send(created);
 });
 
 app.listen(8080, () => {
