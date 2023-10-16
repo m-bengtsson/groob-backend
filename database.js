@@ -61,12 +61,21 @@ export const getUser = async (id) => {
 
 export const createUser = async ({ name, email, password }) => {
    const uid = Math.floor(Math.random() * 10000);
-   await pool.query("INSERT INTO users (uid, name, email, password) VALUES(?, ?, ?, ?)", [uid, name, email, password]);
+   await pool.query(
+      "INSERT INTO users (uid, name, email, password) VALUES(?, ?, ?, ?)",
+      [uid, name, email, password]
+   );
    return getUser(uid);
 };
-const user = {
-   name: "samson",
-   email: "samson@samson.com",
-   password: "password123",
-}
-createUser(user)
+
+export const updateUser = async (newValue, id) => {
+   const result = Object.entries(newValue).map(
+      async ([key, value]) =>
+         await pool.query(`UPDATE users SET ${key} = ?  WHERE uid = ?`, [
+            value,
+            id,
+         ])
+   );
+   await Promise.all(result);
+   return getUser(id);
+};
