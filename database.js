@@ -59,6 +59,11 @@ export const getUser = async (id) => {
    return result[0];
 };
 
+export const getUserByEmail = async (email) => {
+   const [result] = await pool.query("SELECT * from users WHERE email = ?", [email]);
+   return result[0];
+};
+
 export const createUser = async ({ name, email, password }) => {
    const uid = Math.floor(Math.random() * 10000);
    await pool.query(
