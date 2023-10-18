@@ -13,6 +13,7 @@ import {
    updateUser,
    getUserByEmail,
 } from "./database.js";
+import authenticate from "./middleware/authenticate.js";
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/items", async (req, res) => {
+app.get("/items", authenticate, async (req, res) => {
    const items = await getItems();
    res.send(items);
 });
@@ -38,7 +39,6 @@ app.get("/items/:id", async (req, res) => {
 });
 
 app.post("/items", async (req, res) => {
-   console.log("BODY", req.body);
    const { title, body, created_by, number_of_items } = req.body;
    const created = await createItem(title, body, created_by, number_of_items);
 
