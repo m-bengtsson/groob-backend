@@ -1,8 +1,11 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
 import { getUserByEmail } from "../database.js";
 
 const router = express.Router()
+dotenv.config();
+
 const secret_key = process.env.SECRET_KEY;
 
 router.post("/login", async (req, res) => {
