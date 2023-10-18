@@ -101,8 +101,18 @@ app.post("/api/identity/login", async (req, res) => {
 
 app.post("/api/identity/refresh", async (req, res) => {
    const refreshToken = req.cookies["refreshToken"];
+
    if (!refreshToken) {
       return res.status(401).send("Neej va synd, du hade ingen refreshtoken :/");
+   }
+   try {
+      const decoded = jwt.verify(refreshToken, secret_key);
+      const accessToken = jwt.sign({ email: decoded.email }, secret_key, {
+         expiresIn: "15m",
+      });
+      res.status(200).header("Authorization", accessToken).send(decoded.email);
+   } catch (error) {
+      res.status(401).send("Neej va synd du får ingen ny token :'(")
    }
 });
 
