@@ -1,38 +1,34 @@
 import express from "express";
 import authenticate from "../middleware/authenticate.js";
-import {
-   getUsers,
-   getUser,
-   createUser,
-   updateUser,
-} from "../database.js";
+import { getUsers, getUser, createUser, updateUser } from "../database.js";
+import { isAdmin } from "../middleware/authorize.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.use(authenticate);
+router.use([authenticate, isAdmin]);
 
 router.get("/", async (req, res) => {
-   const users = await getUsers();
-   res.send(users);
+	const users = await getUsers();
+	res.send(users);
 });
 
 router.get("/:id", async (req, res) => {
-   const id = req.params.id;
-   const user = await getUser(id);
-   res.send(user);
+	const id = req.params.id;
+	const user = await getUser(id);
+	res.send(user);
 });
 
 router.post("/", async (req, res) => {
-   const created = await createUser(req.body);
+	const created = await createUser(req.body);
 
-   res.status(201).send(created);
+	res.status(201).send(created);
 });
 
 router.put("/:id", async (req, res) => {
-   const id = req.params.id;
-   const updated = await updateUser(req.body, id);
+	const id = req.params.id;
+	const updated = await updateUser(req.body, id);
 
-   res.status(201).send(updated);
+	res.status(201).send(updated);
 });
 
 export default router;
