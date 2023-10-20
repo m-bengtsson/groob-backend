@@ -1,4 +1,4 @@
-import { getUserByEmail } from "../database.js";
+import { getUserByEmail } from "../database-config/database.js";
 
 export const validateLogin = async (req, res, next) => {
 	const { email, password } = req.body;

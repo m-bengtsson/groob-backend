@@ -1,6 +1,11 @@
 import express from "express";
 import authenticate from "../middleware/authenticate.js";
-import { getItems, getItem, createItem, deleteItem } from "../database.js";
+import {
+	getItems,
+	getItem,
+	createItem,
+	deleteItem,
+} from "../database-config/database.js";
 import { isAdmin } from "../middleware/authorize.js";
 
 const router = express.Router();
