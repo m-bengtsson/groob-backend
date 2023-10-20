@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { getUserByEmail } from "../database.js";
+import { getUserByEmail } from "../database-config/database.js";
 import { validateLogin } from "../middleware/validate.js";
 
 const router = express.Router();
