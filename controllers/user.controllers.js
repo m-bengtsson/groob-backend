@@ -49,6 +49,7 @@ export const updateUser = async (newValue, id) => {
 	);
 
 	await Promise.all(updatedUser);
+
 	return updatedUser;
 };
 

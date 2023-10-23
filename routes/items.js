@@ -10,7 +10,7 @@ import { isAdmin } from "../middleware/authorize.js";
 
 const router = express.Router();
 
-router.use(authenticate);
+/* router.use(authenticate); */
 
 router.get("/", authenticate, async (req, res) => {
 	const items = await getItems();

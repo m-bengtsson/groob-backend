@@ -1,4 +1,4 @@
-import { getUser } from "../database-config/database.js";
+import { getUser } from "../controllers/user.controllers.js";
 
 export const isAdmin = async (req, res, next) => {
 	const { uid } = req.body;
