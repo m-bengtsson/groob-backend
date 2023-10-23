@@ -23,4 +23,66 @@ db.user = userModel(sequelize, DataTypes);
 db.item = itemModel(sequelize, DataTypes);
 db.refreshToken = refreshTokenModel(sequelize, DataTypes);
 
+db.user.hasMany(db.item, {
+   foreignKey: {
+      name: "createdBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.item.belongsTo(db.user, {
+   foreignKey: {
+      name: "createdBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.user.hasMany(db.item, {
+   foreignKey: {
+      name: "updatedBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.item.belongsTo(db.user, {
+   foreignKey: {
+      name: "updatedBy",
+      foreignKeyConstraint: true
+   }
+});
+
+// Users to users
+
+db.user.hasMany(db.user, {
+   foreignKey: {
+      name: "createdBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.user.belongsTo(db.user, {
+   foreignKey: {
+      name: "createdBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.user.hasMany(db.user, {
+   foreignKey: {
+      name: "updatedBy",
+      foreignKeyConstraint: true
+   }
+});
+
+db.user.belongsTo(db.user, {
+   foreignKey: {
+      name: "updatedBy",
+      foreignKeyConstraint: true
+   }
+});
+
+// Refreshtoken
+
+db.refreshToken.belongsTo(db.user);
+
 export default db;
