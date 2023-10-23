@@ -11,7 +11,7 @@ const itemModel = (sequelize, DataTypes) => {
          allowNull: false,
       },
       description: {
-         type: DataTypes.TEXT({ length: long }),
+         type: DataTypes.TEXT({ length: "long" }),
          allowNull: false,
       },
       numberOfItems: {
