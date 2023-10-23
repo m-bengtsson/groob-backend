@@ -1,15 +1,14 @@
-import mysql from "mysql2";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const pool = mysql
-	.createPool({
-		host: process.env.MYSQL_HOST,
-		user: process.env.MYSQL_USER,
-		password: process.env.MYSQL_PASSWORD,
-		database: process.env.MYSQL_DATABASE,
-	})
-	.promise();
+const config = {
+   HOST: process.env.MYSQL_HOST,
+   USER: process.env.MYSQL_USER,
+   PASSWORD: process.env.MYSQL_PASSWORD,
+   DB: process.env.MYSQL_DATABASE,
+   dialect: "mysql",
+   pool: { max: 5, min: 0, acquire: 30000, idle: 10000 }
+}
 
-export default pool;
+export default config;
