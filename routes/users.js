@@ -5,12 +5,13 @@ import {
 	getUser,
 	createUser,
 	updateUser,
-} from "../database-config/database.js";
+	deleteUser,
+} from "../controllers/user.controllers.js";
 import { isAdmin } from "../middleware/authorize.js";
 
 const router = express.Router();
 
-router.use([authenticate, isAdmin]);
+/* router.use([authenticate, isAdmin]); */
 
 router.get("/", async (req, res) => {
 	const users = await getUsers();
@@ -34,6 +35,12 @@ router.put("/:id", async (req, res) => {
 	const updated = await updateUser(req.body, id);
 
 	res.status(201).send(updated);
+});
+
+router.delete("/:id", async (req, res) => {
+	const destroyed = await deleteUser(req.params.id);
+
+	res.status(200).send({ message: destroyed });
 });
 
 export default router;
