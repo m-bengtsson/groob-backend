@@ -5,14 +5,14 @@ import {
 	getItem,
 	createItem,
 	deleteItem,
-} from "../database-config/database.js";
+} from "../controllers/item.controllers.js";
 import { isAdmin } from "../middleware/authorize.js";
 
 const router = express.Router();
 
 router.use(authenticate);
 
-router.get("/", authenticate, async (req, res) => {
+router.get("/", async (req, res) => {
 	const items = await getItems();
 	res.send(items);
 });

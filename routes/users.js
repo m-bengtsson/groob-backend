@@ -5,35 +5,48 @@ import {
 	getUser,
 	createUser,
 	updateUser,
-} from "../database-config/database.js";
+	deleteUser,
+} from "../controllers/user.controllers.js";
 import { isAdmin } from "../middleware/authorize.js";
 
 const router = express.Router();
 
-router.use([authenticate, isAdmin]);
+router.use(authenticate);
 
 router.get("/", async (req, res) => {
 	const users = await getUsers();
 	res.send(users);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/currentUser", async (req, res) => {
+	const id = req.user.id;
+	const user = await getUser(id);
+	res.send(user);
+});
+
+router.get("/:id", isAdmin, async (req, res) => {
 	const id = req.params.id;
 	const user = await getUser(id);
 	res.send(user);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", isAdmin, async (req, res) => {
 	const created = await createUser(req.body);
 
 	res.status(201).send(created);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAdmin, async (req, res) => {
 	const id = req.params.id;
 	const updated = await updateUser(req.body, id);
 
 	res.status(201).send(updated);
+});
+
+router.delete("/:id", isAdmin, async (req, res) => {
+	const destroyed = await deleteUser(req.params.id);
+
+	res.status(200).send({ message: destroyed });
 });
 
 export default router;
