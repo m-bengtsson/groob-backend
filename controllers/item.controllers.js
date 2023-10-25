@@ -19,15 +19,18 @@ export const createItem = async ({
 	numberOfItems,
 	createdBy,
 }) => {
-	const createdItem = await Item.create({
-		id: uuidv4(),
-		title,
-		description,
-		numberOfItems,
-		createdBy,
-	});
-
-	return createdItem;
+	try {
+		const createdItem = await Item.create({
+			id: uuidv4(),
+			title,
+			description,
+			numberOfItems,
+			createdBy,
+		});
+		return createdItem;
+	} catch (error) {
+		return error;
+	}
 };
 
 export const updateItem = async (newValue, id) => {

@@ -5,7 +5,6 @@ export const isAdmin = async (req, res, next) => {
 
 	const user = await getUser(id);
 	if (user) {
-		console.log("USER: ", user);
 		if (user.role === "admin") {
 			req.user = user;
 			next();
