@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 import { v4 as uuidv4 } from "uuid";
-import bcrypt, { genSalt } from "bcrypt";
+import bcrypt from "bcrypt";
 
 const saltRounds = 10;
 const User = db.user;
@@ -36,19 +36,7 @@ export const createUser = async ({ name, email, password, createdBy }) => {
 };
 
 export const updateUser = async (newValue, id) => {
-	const updatedUser = Object.entries(newValue).map(
-		async ([key, value]) =>
-			await User.update(
-				{ [key]: value },
-				{
-					where: {
-						id: id,
-					},
-				}
-			)
-	);
-
-	await Promise.all(updatedUser);
+	const updatedUser = await User.update({ ...newValue }, { where: { id } });
 
 	return updatedUser;
 };

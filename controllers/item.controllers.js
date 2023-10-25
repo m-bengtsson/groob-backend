@@ -19,43 +19,20 @@ export const createItem = async ({
 	numberOfItems,
 	createdBy,
 }) => {
-	try {
-		const createdItem = await Item.create({
-			id: uuidv4(),
-			title,
-			description,
-			numberOfItems,
-			createdBy,
-		});
-		return createdItem;
-	} catch (error) {
-		return error;
-	}
+	const createdItem = await Item.create({
+		id: uuidv4(),
+		title,
+		description,
+		numberOfItems,
+		createdBy,
+	});
+	return createdItem;
 };
 
 export const updateItem = async (newValue, id) => {
-	const updatedItem = Object.entries(newValue).map(
-		async ([key, value]) =>
-			await Item.update(
-				{ [key]: value },
-				{
-					where: {
-						id: id,
-					},
-				}
-			)
-	);
+	const updatedItem = await Item.update({ ...newValue }, { where: { id } });
 
-	await Promise.all(updatedItem);
-	const isUpdated = await Item.update(
-		{ updatedBy: 12 },
-		{
-			where: {
-				id,
-			},
-		}
-	);
-	return isUpdated;
+	return updatedItem;
 };
 
 export const deleteItem = async (id) => {

@@ -36,11 +36,19 @@ router.post("/", isAdmin, async (req, res) => {
 	res.status(201).send(created);
 });
 
-router.put("/:id", isAdmin, async (req, res) => {
+router.patch("/:id", isAdmin, async (req, res) => {
 	const id = req.params.id;
 	const updated = await updateUser(req.body, id);
 
-	res.status(201).send(updated);
+	try {
+		if (updated === 0) {
+			return res.status(400).send("Something went wrong, try again later");
+		}
+
+		res.status(201).send(updated);
+	} catch (error) {
+		res.status(400).send("Something went wrong, try again later");
+	}
 });
 
 router.delete("/:id", isAdmin, async (req, res) => {

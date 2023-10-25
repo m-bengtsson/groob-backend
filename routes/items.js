@@ -5,6 +5,7 @@ import {
 	getItem,
 	createItem,
 	deleteItem,
+	updateItem,
 } from "../controllers/item.controllers.js";
 import { isAdmin } from "../middleware/authorize.js";
 
@@ -37,13 +38,27 @@ router.post("/", isAdmin, async (req, res) => {
 	}
 
 	try {
-		const created = await createItem({
+		const created = await createItem(
 			title,
 			description,
 			numberOfItems,
-			createdBy,
-		});
+			createdBy
+		);
 		res.status(201).send(created);
+	} catch (error) {
+		res.status(400).send("Something went wrong, try again later");
+	}
+});
+
+router.patch("/:id", isAdmin, async (req, res) => {
+	const id = req.params.id;
+	const updated = await updateItem(req.body, id);
+	try {
+		if (updated === 0) {
+			return res.status(400).send("Something went wrong, try again later");
+		}
+
+		res.status(201).send(updated);
 	} catch (error) {
 		res.status(400).send("Something went wrong, try again later");
 	}
@@ -53,12 +68,16 @@ router.delete("/:id", isAdmin, async (req, res) => {
 	const id = req.params.id;
 	const item = await deleteItem(id);
 
-	//result.affectedRows will be 0 if item is not found
-	if (item === 0) {
-		res.sendStatus(400);
-	}
+	try {
+		//result.affectedRows will be 0 if item is not found
+		if (item === 0) {
+			return res.status(400).send("Something went wrong, try again later");
+		}
 
-	res.sendStatus(200);
+		res.sendStatus(200);
+	} catch (error) {
+		res.status(400).send("Something went wrong, try again later");
+	}
 });
 
 export default router;
