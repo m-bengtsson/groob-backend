@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { getUserByEmail } from "../controllers/user.controllers.js";
 
 export const validateLogin = async (req, res, next) => {
@@ -7,7 +8,9 @@ export const validateLogin = async (req, res, next) => {
 		return res.status(401).send("Neeej, vad synd, du får inte logga in");
 	}
 
-	if (maybeUser.password !== password) {
+	const match = await bcrypt.compare(password, maybeUser.password);
+
+	if (!match) {
 		return res.status(401).send("Neeej, vad synd, du får inte logga in");
 	}
 
