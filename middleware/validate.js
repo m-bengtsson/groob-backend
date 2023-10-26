@@ -3,6 +3,7 @@ import { getUserByEmail } from "../controllers/user.controllers.js";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import db from "../models/index.js";
+import usePassWordValidate from "../hooks/usePasswordValidate.js";
 
 dotenv.config();
 
@@ -51,19 +52,16 @@ export const validateSignup = async (req, res, next) => {
 			return res.status(400).send("Neej va synd du får inte registrera dig");
 		}
 
-		if (!name || !password || !repeatPassword) {
+		if (!name) {
 			return res.status(400).send("All fields required");
 		}
 
-		const strongPassword =
-			/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-		if (!strongPassword.test(password)) {
-			return res.status(400).send("Password is too weak");
+		try {
+			await usePassWordValidate(password, repeatPassword);
+		} catch (error) {
+			return res.status(400).send(error.message);
 		}
 
-		if (password !== repeatPassword) {
-			return res.status(400).send("Passwords do not match");
-		}
 		req.invite = maybeInvited;
 		next();
 	} catch (error) {

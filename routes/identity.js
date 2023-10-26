@@ -140,17 +140,10 @@ router.patch("/changePassword", async (req, res) => {
 
 		const { password, repeatPassword } = req.body;
 
-		if (!password || !repeatPassword) {
-			return res.status(400).send("All fields required");
-		}
-		const strongPassword =
-			/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-		if (!strongPassword.test(password)) {
-			return res.status(400).send("Password is too weak");
-		}
-
-		if (password !== repeatPassword) {
-			return res.status(400).send("Passwords do not match");
+		try {
+			await usePassWordValidate(password, repeatPassword);
+		} catch (error) {
+			return res.status(400).send(error.message);
 		}
 
 		const hashedPassword = await bcrypt.hash(password, saltRounds);

@@ -23,6 +23,8 @@ const authenticate = (req, res, next) => {
 
 		try {
 			const decoded = jwt.verify(refreshToken, secret_key_refresh);
+
+			//todo: check if refreshToken is in database
 			const accessToken = jwt.sign(decoded.user, secret_key_access, {
 				expiresIn: "15m",
 			});
