@@ -1,5 +1,5 @@
-const invitedUserModel = (sequelize, DataTypes) => {
-	const InvitedUser = sequelize.define("invitedUsers", {
+const resetPasswordTokenModel = (sequelize, DataTypes) => {
+	const ResetPasswordToken = sequelize.define("resetPasswordTokens", {
 		id: {
 			type: DataTypes.UUID,
 			primaryKey: true,
@@ -15,12 +15,8 @@ const invitedUserModel = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 			allowNull: false,
 		},
-		createdBy: {
-			type: DataTypes.UUID,
-			allowNull: false,
-		},
 	});
-	return InvitedUser;
+	return ResetPasswordToken;
 };
 
-export default invitedUserModel;
+export default resetPasswordTokenModel;
