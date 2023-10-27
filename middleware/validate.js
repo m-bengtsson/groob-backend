@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { getUserByEmail } from "../controllers/user.controllers.js";
+import { useGetUserByEmail } from "../hooks/useUser.js";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import db from "../models/index.js";
@@ -9,7 +9,7 @@ dotenv.config();
 
 export const validateLogin = async (req, res, next) => {
 	const { email, password } = req.body;
-	const maybeUser = await getUserByEmail(email);
+	const maybeUser = await useGetUserByEmail(email);
 	if (!maybeUser) {
 		return res.status(401).send("Neeej, vad synd, du får inte logga in1");
 	}
@@ -39,7 +39,7 @@ export const validateSignup = async (req, res, next) => {
 			process.env.SECRET_KEY_VERIFY
 		);
 
-		const maybeUser = await getUserByEmail(decoded.email);
+		const maybeUser = await useGetUserByEmail(decoded.email);
 		if (maybeUser) {
 			return res
 				.status(400)

@@ -12,6 +12,7 @@ const authenticate = (req, res, next) => {
 	if (!accessToken && !refreshToken) {
 		return res.status(401).send("Access Denied. No token provided.");
 	}
+
 	try {
 		const decoded = jwt.verify(accessToken, secret_key_access);
 		req.user = decoded;
@@ -28,6 +29,7 @@ const authenticate = (req, res, next) => {
 			const accessToken = jwt.sign(decoded.user, secret_key_access, {
 				expiresIn: "15m",
 			});
+
 			res
 				.cookie("refreshToken", refreshToken, {
 					httpOnly: true,

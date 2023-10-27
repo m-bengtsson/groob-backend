@@ -3,17 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 
 const Item = db.item;
 
-export const getItems = async () => {
+export const useGetItems = async () => {
 	const foundItems = await Item.findAll();
 	return foundItems;
 };
 
-export const getItem = async (id) => {
+export const useGetItem = async (id) => {
 	const foundItem = await Item.findOne({ where: { id } });
 	return foundItem;
 };
 
-export const createItem = async ({
+export const useCreateItem = async ({
 	title,
 	description,
 	numberOfItems,
@@ -29,12 +29,12 @@ export const createItem = async ({
 	return createdItem;
 };
 
-export const updateItem = async (newValue, id) => {
+export const useUpdateItem = async (newValue, id) => {
 	const updatedItem = await Item.update({ ...newValue }, { where: { id } });
 
 	return updatedItem;
 };
 
-export const deleteItem = async (id) => {
+export const useDeleteItem = async (id) => {
 	return await Item.destroy({ where: { id } });
 };

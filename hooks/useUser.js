@@ -5,23 +5,23 @@ import bcrypt from "bcrypt";
 const saltRounds = 10;
 const User = db.user;
 
-export const getUsers = async () => {
+export const useGetUsers = async () => {
 	const foundUsers = await User.findAll();
 
 	return foundUsers;
 };
 
-export const getUser = async (id) => {
+export const useGetUser = async (id) => {
 	const foundUser = await User.findOne({ where: { id } });
 	return foundUser;
 };
 
-export const getUserByEmail = async (email) => {
+export const useGetUserByEmail = async (email) => {
 	const foundUser = await User.findOne({ where: { email } });
 	return foundUser;
 };
 
-export const createUser = async ({ name, email, password, createdBy }) => {
+export const useCreateUser = async ({ name, email, password, createdBy }) => {
 	const hashedPassword = await bcrypt.hash(password, saltRounds);
 
 	const createdUser = await User.create({
@@ -35,12 +35,12 @@ export const createUser = async ({ name, email, password, createdBy }) => {
 	return createdUser;
 };
 
-export const updateUser = async (newValue, id) => {
+export const useUpdateUser = async (newValue, id) => {
 	const updatedUser = await User.update({ ...newValue }, { where: { id } });
 
 	return updatedUser;
 };
 
-export const deleteUser = async (id) => {
+export const useDeleteUser = async (id) => {
 	return await User.destroy({ where: { id } });
 };
