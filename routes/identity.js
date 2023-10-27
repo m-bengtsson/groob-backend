@@ -3,12 +3,12 @@ import { validateLogin, validateSignup } from "../middleware/validate.js";
 import { isAdmin } from "../middleware/authorize.js";
 import authenticate from "../middleware/authenticate.js";
 import {
-	inviteUser,
-	requestResetPassword,
-	changePassword,
-	registerUser,
-	loginUser,
-	refresh,
+  inviteUser,
+  requestResetPassword,
+  changePassword,
+  registerUser,
+  loginUser,
+  refresh,
 } from "../controllers/identity.controller.js";
 
 const router = express.Router();
