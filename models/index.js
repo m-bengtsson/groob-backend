@@ -27,6 +27,7 @@ db.refreshToken = refreshTokenModel(sequelize, DataTypes);
 db.invitedUser = invitedUserModel(sequelize, DataTypes);
 db.resetPasswordToken = resetPasswordTokenModel(sequelize, DataTypes);
 
+// Items to users
 db.user.hasMany(db.item, {
   foreignKey: {
     name: "createdBy",
@@ -101,7 +102,7 @@ db.invitedUser.belongsTo(db.user, {
 
 // Refreshtoken
 db.refreshToken.belongsTo(db.user);
-db.user.hasMany(db.refreshToken);
+db.user.hasMany(db.refreshToken, { foreignKeyConstraint: true });
 
 //ResetPasswordToken
 db.resetPasswordToken.belongsTo(db.user);

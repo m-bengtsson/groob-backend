@@ -9,6 +9,7 @@ import {
   registerUser,
   loginUser,
   refresh,
+  logoutUser,
 } from "../controllers/identity.controller.js";
 
 const router = express.Router();
@@ -22,6 +23,8 @@ router.patch("/changePassword", changePassword);
 router.post("/register", validateSignup, registerUser);
 
 router.post("/login", validateLogin, loginUser);
+
+router.post("/logout", authenticate, logoutUser);
 
 router.post("/refresh", refresh);
 
