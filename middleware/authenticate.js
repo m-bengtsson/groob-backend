@@ -1,9 +1,11 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import db from "../models/index.js";
 
 dotenv.config();
 const secret_key_access = process.env.SECRET_KEY_ACCESS;
 const secret_key_refresh = process.env.SECRET_KEY_REFRESH;
+const Refreshtoken = db.refreshToken;
 
 const authenticate = (req, res, next) => {
 	const accessToken = req.headers["authorization"];
@@ -23,20 +25,25 @@ const authenticate = (req, res, next) => {
 		}
 
 		try {
-			const decoded = jwt.verify(refreshToken, secret_key_refresh);
-
-			//todo: check if refreshToken is in database
-			const accessToken = jwt.sign(decoded.user, secret_key_access, {
-				expiresIn: "15m",
+			const maybeTokenExists = Refreshtoken.findOne({
+				where: { token: refreshToken },
 			});
 
-			res
-				.cookie("refreshToken", refreshToken, {
-					httpOnly: true,
-					sameSite: "strict",
-				})
-				.header("Authorization", accessToken)
-				.send(decoded.user);
+			if (maybeTokenExists) {
+				const decoded = jwt.verify(refreshToken, secret_key_refresh);
+
+				const accessToken = jwt.sign(decoded.user, secret_key_access, {
+					expiresIn: "15m",
+				});
+
+				res
+					.cookie("refreshToken", refreshToken, {
+						httpOnly: true,
+						sameSite: "strict",
+					})
+					.header("Authorization", accessToken)
+					.send(decoded.user);
+			}
 		} catch (error) {
 			return res.status(400).send("Invalid Token.");
 		}
