@@ -26,19 +26,23 @@ export const getItem = async (req, res) => {
 export const createItem = async (req, res) => {
 	const { title, description, createdBy, numberOfItems } = req.body;
 
+	console.log("REQ BODY: ", title, description, createdBy, numberOfItems);
+
 	if (!title || !description || !createdBy || !numberOfItems) {
 		return res.status(400).send("All fields required");
 	}
 
 	try {
-		const created = await useCreateItem(
+		const created = await useCreateItem({
 			title,
 			description,
 			numberOfItems,
-			createdBy
-		);
+			createdBy,
+		});
+
 		res.status(201).send(created);
 	} catch (error) {
+		console.log("ERROR", error);
 		res.status(400).send("Something went wrong, try again later");
 	}
 };
