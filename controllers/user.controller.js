@@ -7,26 +7,46 @@ import {
 } from "../hooks/useUser.js";
 
 export const getAllUsers = async (req, res) => {
-	const users = await useGetUsers();
-	res.send(users);
+	try {
+		const users = await useGetUsers();
+		if (!users) {
+			return res.status(500).send("Something went wrong, try again later");
+		}
+
+		res.status(200).send(users);
+	} catch (error) {
+		return res.status(500).send("Something went wrong, try again later");
+	}
 };
 
 export const getCurrentUser = async (req, res) => {
 	const id = req.user.id;
-	const user = await useGetUser(id);
-	res.send(user);
+	try {
+		const user = await useGetUser(id);
+
+		if (!user) {
+			return res.status(500).send("Something went wrong, try again later");
+		}
+
+		res.status(200).send(user);
+	} catch (error) {
+		return res.status(500).send("Something went wrong, try again later");
+	}
 };
 
 export const getUserById = async (req, res) => {
 	const id = req.params.id;
-	const user = await useGetUser(id);
-	res.send(user);
-};
+	try {
+		const user = await useGetUser(id);
 
-export const createUser = async (req, res) => {
-	const created = await useCreateUser(req.body);
+		if (!user) {
+			return res.status(400).send("Could not find that user");
+		}
 
-	res.status(201).send(created);
+		res.status(200).send(user);
+	} catch (error) {
+		return res.status(500).send("Something went wrong, try again later");
+	}
 };
 
 export const updateUser = async (req, res) => {
@@ -34,18 +54,28 @@ export const updateUser = async (req, res) => {
 	const updated = await useUpdateUser(req.body, id);
 
 	try {
-		if (updated === 0) {
+		if (updated[0] === 0) {
 			return res.status(400).send("Something went wrong, try again later");
 		}
 
-		res.status(201).send(updated);
+		const updatedUser = await useGetUser(id);
+		res.status(201).send(updatedUser);
 	} catch (error) {
 		res.status(400).send("Something went wrong, try again later");
 	}
 };
 
 export const deleteUser = async (req, res) => {
-	const destroyed = await useDeleteUser(req.params.id);
+	const { id } = req.params;
+	try {
+		const destroyed = await useDeleteUser(id);
 
-	res.status(200).send({ message: destroyed });
+		if (destroyed === 0) {
+			return res.status(400).send("Something went wrong, try again later");
+		}
+
+		res.status(200).send("User destroyed");
+	} catch (error) {
+		res.status(400).send("Something went wrong, try again later");
+	}
 };
