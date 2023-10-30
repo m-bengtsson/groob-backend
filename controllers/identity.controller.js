@@ -11,6 +11,7 @@ import {
 import usePassWordValidate from "../hooks/usePasswordValidate.js";
 import bcrypt from "bcrypt";
 import useSendEmail from "../hooks/useSendEmail.js";
+import { setFailedAttempts } from "../middleware/rateLimit.js";
 
 dotenv.config();
 
@@ -120,6 +121,7 @@ export const requestResetPassword = async (req, res) => {
 					resetPasswordToken
 			);
 	} catch (error) {
+		console.log("ERROR: ", error);
 		res.status(400).send("Sorry something went wrong, try again later");
 	}
 };
@@ -140,7 +142,7 @@ export const changePassword = async (req, res) => {
 		const maybeUser = await useGetUser(decoded.id);
 
 		if (!maybeUser) {
-			return res.status(400).send("Sorry something went wrong1");
+			return res.status(400).send("Sorry something went wrong");
 		}
 
 		const maybeRequested = await ResetPasswordToken.findOne({
@@ -148,7 +150,7 @@ export const changePassword = async (req, res) => {
 		});
 
 		if (!maybeRequested) {
-			return res.status(400).send("Sorry something went wrong2");
+			return res.status(400).send("Sorry something went wrong");
 		}
 
 		const { password, repeatPassword } = req.body;
@@ -162,13 +164,16 @@ export const changePassword = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, saltRounds);
 
 		const updatedUser = await useUpdateUser(
-			{ password: hashedPassword },
+			{ password: hashedPassword, isLocked: false },
 			maybeUser.id
 		);
 
+		setFailedAttempts();
+
 		res.status(200).send("Password reset" + updatedUser);
 	} catch (error) {
-		return res.status(400).send("Sorry something went wrong3");
+		console.log("ERROR ", error);
+		return res.status(400).send("Sorry something went wrong");
 	}
 };
 

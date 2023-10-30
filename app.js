@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import identityRoute from "./routes/identity.js";
 import db from "./models/index.js";
 import logger from "./middleware/logger.js";
+import { limiter } from "./middleware/rateLimit.js";
 
 const app = express();
 db.sequelize.sync();
@@ -19,6 +20,7 @@ app.use(
 
 app.use(express.json());
 app.use(logger);
+app.use(limiter);
 app.use("/api/items", itemsRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/identity", identityRoute);
