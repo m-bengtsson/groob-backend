@@ -5,7 +5,6 @@ import {
 	getAllUsers,
 	getCurrentUser,
 	getUserById,
-	createUser,
 	updateUser,
 	deleteUser,
 } from "../controllers/user.controller.js";
@@ -19,8 +18,6 @@ router.get("/", getAllUsers);
 router.get("/currentUser", getCurrentUser);
 
 router.get("/:id", isAdmin, getUserById);
-
-router.post("/", isAdmin, createUser);
 
 router.patch("/:id", isAdmin, updateUser);
 
