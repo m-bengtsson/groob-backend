@@ -14,7 +14,6 @@ export const loginLimiter = rateLimit({
 	max: (req) => {
 		const ip = req.ip;
 
-		console.log("FAILED ATTEMPTS: ", failedAttempts);
 		if (failedAttempts[ip] >= 9) {
 			return 0;
 		}
