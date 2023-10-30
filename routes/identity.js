@@ -3,15 +3,15 @@ import { validateLogin, validateSignup } from "../middleware/validate.js";
 import { isAdmin } from "../middleware/authorize.js";
 import authenticate from "../middleware/authenticate.js";
 import {
-  inviteUser,
-  requestResetPassword,
-  changePassword,
-  registerUser,
-  loginUser,
-  refresh,
-  logoutUser,
+	inviteUser,
+	requestResetPassword,
+	changePassword,
+	registerUser,
+	loginUser,
+	refresh,
+	logoutUser,
 } from "../controllers/identity.controller.js";
-import { limiter } from "../middleware/rateLimit.js";
+import { loginLimiter } from "../middleware/rateLimit.js";
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.patch("/changePassword", changePassword);
 
 router.post("/register", validateSignup, registerUser);
 
-router.post("/login", [limiter, validateLogin], loginUser);
+router.post("/login", [loginLimiter, validateLogin], loginUser);
 
 router.post("/logout", authenticate, logoutUser);
 
