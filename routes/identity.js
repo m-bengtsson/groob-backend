@@ -11,6 +11,7 @@ import {
   refresh,
   logoutUser,
 } from "../controllers/identity.controller.js";
+import { limiter } from "../middleware/rateLimit.js";
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.patch("/changePassword", changePassword);
 
 router.post("/register", validateSignup, registerUser);
 
-router.post("/login", validateLogin, loginUser);
+router.post("/login", [limiter, validateLogin], loginUser);
 
 router.post("/logout", authenticate, logoutUser);
 
