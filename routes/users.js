@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.use(authenticate);
 
-router.get("/", getAllUsers);
+router.get("/", isAdmin, getAllUsers);
 
 router.get("/currentUser", getCurrentUser);
 
