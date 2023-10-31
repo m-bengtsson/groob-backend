@@ -12,19 +12,19 @@ export const validateLogin = async (req, res, next) => {
 	const maybeUser = await useGetUserByEmail(email);
 
 	if (!maybeUser) {
-		return res.status(401).send("Neeej, vad synd, du får inte logga in");
+		return res.status(400).send("Neeej, vad synd, du får inte logga in");
 	}
 
 	if (maybeUser.isLocked) {
 		return res
-			.status(401)
+			.status(400)
 			.send("Oj då, ditt konto är låst, du behöver skapa nytt lösenord");
 	}
 
 	const match = await bcrypt.compare(password, maybeUser.password);
 
 	if (!match) {
-		return res.status(401).send("Neeej, vad synd, du får inte logga in");
+		return res.status(400).send("Neeej, vad synd, du får inte logga in");
 	}
 
 	req.user = maybeUser;
