@@ -59,6 +59,7 @@ export const inviteUser = async (req, res) => {
 
 		await useSendEmail(mailOptions);
 
+		//todo: remove verifixationtoken form response
 		res
 			.status(200)
 			.send(
@@ -114,6 +115,7 @@ export const requestResetPassword = async (req, res) => {
 
 		await useSendEmail(mailOptions);
 
+		//todo: remove token from response
 		res
 			.status(200)
 			.send(
