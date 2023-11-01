@@ -25,7 +25,7 @@ router.post("/register", validateSignup, registerUser);
 
 router.post("/login", [/* loginLimiter, */ validateLogin], loginUser);
 
-router.post("/logout", authenticate, logoutUser);
+router.post("/logout", /* authenticate, */ logoutUser);
 
 router.post("/refresh", refresh);
 

@@ -226,11 +226,14 @@ export const loginUser = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-	const id = req.user.id;
+	const { id } = req.body;
 
 	try {
 		await db.refreshToken.destroy({ where: { userId: id } });
-		return res.status(200).send("Successfully logged out");
+		return res
+			.status(200)
+			.clearCookie("refreshToken", { path: "/" })
+			.send("Successfully logged out");
 	} catch (error) {
 		return res.status(500).send("Something went wrong, try again later");
 	}
