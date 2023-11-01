@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import db from "../models/index.js";
+import { useGetUser } from "../hooks/useUser.js";
 
 dotenv.config();
 const secret_key_access = process.env.SECRET_KEY_ACCESS;
 const secret_key_refresh = process.env.SECRET_KEY_REFRESH;
 const Refreshtoken = db.refreshToken;
 
-const authenticate = (req, res, next) => {
+const authenticate = async (req, res, next) => {
 	const accessToken = req.headers["authorization"];
 	const refreshToken = req.cookies["refreshToken"];
 
@@ -25,14 +26,16 @@ const authenticate = (req, res, next) => {
 		}
 
 		try {
-			const maybeTokenExists = Refreshtoken.findOne({
+			const maybeTokenExists = await Refreshtoken.findOne({
 				where: { token: refreshToken },
 			});
 
 			if (maybeTokenExists) {
 				const decoded = jwt.verify(refreshToken, secret_key_refresh);
 
-				const accessToken = jwt.sign(decoded.user, secret_key_access, {
+				const user = await useGetUser(decoded.id);
+
+				const accessToken = jwt.sign(user.dataValues, secret_key_access, {
 					expiresIn: "15m",
 				});
 
@@ -42,9 +45,10 @@ const authenticate = (req, res, next) => {
 						sameSite: "strict",
 					})
 					.header("Authorization", accessToken)
-					.send(decoded.user);
+					.send(user.dataValues);
 			}
 		} catch (error) {
+			console.log("BACKEND ERROR", error);
 			return res.status(400).send("Invalid Token.");
 		}
 	}
