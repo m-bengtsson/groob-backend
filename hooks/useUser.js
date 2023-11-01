@@ -12,7 +12,10 @@ export const useGetUsers = async () => {
 };
 
 export const useGetUser = async (id) => {
-	const foundUser = await User.findOne({ where: { id } });
+	const foundUser = await User.findOne({
+		attributes: ["name", "email", "id", "role"],
+		where: { id },
+	});
 	return foundUser;
 };
 

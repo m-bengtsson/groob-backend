@@ -10,16 +10,16 @@ import { limiter } from "./middleware/rateLimit.js";
 
 const app = express();
 db.sequelize.sync();
-
-app.use(cookies());
 app.use(
 	cors({
 		origin: "http://localhost:5173",
 		exposedHeaders: "Authorization",
 		credentials: true,
+		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+		allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
 	})
 );
-
+app.use(cookies());
 app.use(express.json());
 app.use(logger);
 app.use(limiter);
