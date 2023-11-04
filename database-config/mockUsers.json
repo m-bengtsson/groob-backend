@@ -1,0 +1,91 @@
+[
+	{
+		"id": "36c5179f-6e18-428c-8ac2-4c590fc3e457",
+		"name": "Groob",
+		"email": "groobgroobsson@gmail.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"role": "admin",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "e75bb9fb-7250-4504-a61b-c9011d295143",
+		"name": "Link",
+		"email": "link@link.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"role": "admin",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "6a99fb7c-9a91-4b6e-9917-e17d6940e8a6",
+		"name": "Navi",
+		"email": "navi@navi.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"role": "admin",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7",
+		"name": "Impa",
+		"email": "impa@impa.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"role": "admin",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "f1e54fd3-ee99-41db-88c8-59ddde3b5fb9",
+		"name": "Rut",
+		"email": "rut@rut.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "b95faf78-a882-44cd-a6b6-02ad542fdf9e",
+		"name": "Reuben",
+		"email": "reuben@reuben.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+
+	{
+		"id": "84c1caf6-40fb-42d1-852c-01d6edda81d9",
+		"name": "Zelda",
+		"email": "zelda@zelda.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "e75bb9fb-7250-4504-a61b-c9011d295143"
+	},
+	{
+		"id": "08778809-3ac6-4b91-be4f-f37582fc2d61",
+		"name": "Ganon",
+		"email": "ganon@ganon.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "6a99fb7c-9a91-4b6e-9917-e17d6940e8a6"
+	},
+	{
+		"id": "7db0c0da-e985-4e53-bba4-9147af0dccc1",
+		"name": "Fairy",
+		"email": "Fairy@Fairy.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "6cee407c-9dbe-430b-9b5b-dc77069ca9d2",
+		"name": "Epona",
+		"email": "epona@epona.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "aa2626d1-c03a-4659-9858-ef561876feb7",
+		"name": "Majora",
+		"email": "majora@majora.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
+	},
+	{
+		"id": "c7fc25ee-5a26-4385-a7af-bf67d1399aa9",
+		"name": "Midna",
+		"email": "midna@midna.com",
+		"password": "$2b$10$cRYsbXA/R6tbw.Fd2uYbFuHxeV4rZ1H6xcneCNLAIrDPd2YjOs5Iy",
+		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"
+	}
+]
