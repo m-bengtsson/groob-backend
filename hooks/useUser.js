@@ -11,6 +11,7 @@ export const useGetUsers = async () => {
 			"id",
 			"name",
 			"email",
+			"role",
 			"createdBy",
 			"updatedBy",
 			"createdBy",
