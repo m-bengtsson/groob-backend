@@ -14,7 +14,7 @@ export const useGetUsers = async () => {
 			"role",
 			"createdBy",
 			"updatedBy",
-			"createdBy",
+			"createdAt",
 			"updatedAt",
 		],
 	});
