@@ -26,6 +26,7 @@ const InvitedUser = db.invitedUser;
 
 export const inviteUser = async (req, res) => {
 	const { email } = req.body;
+	console.log("EMAIL", email);
 	const { id } = req.user;
 	try {
 		const maybeUser = await useGetUserByEmail(email);
@@ -67,6 +68,7 @@ export const inviteUser = async (req, res) => {
 					verificationToken
 			);
 	} catch (error) {
+		console.log("ERROR", error);
 		res.status(500).send("Something went wrong, try again later");
 	}
 };
@@ -113,7 +115,7 @@ export const requestResetPassword = async (req, res) => {
 			html: '<p>Click <a href="http://localhost:5173/login">here</a> to reset your password</p>',
 		};
 
-		await useSendEmail(mailOptions);
+		await useSendEmail(mailOptions, { res });
 
 		//todo: remove token from response
 		res
