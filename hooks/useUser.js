@@ -6,7 +6,17 @@ const saltRounds = 10;
 const User = db.user;
 
 export const useGetUsers = async () => {
-	const foundUsers = await User.findAll();
+	const foundUsers = await User.findAll({
+		attributes: [
+			"id",
+			"name",
+			"email",
+			"createdBy",
+			"updatedBy",
+			"createdBy",
+			"updatedAt",
+		],
+	});
 
 	return foundUsers;
 };
