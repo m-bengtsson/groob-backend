@@ -25,8 +25,8 @@ const ResetPasswordToken = db.resetPasswordToken;
 const InvitedUser = db.invitedUser;
 
 export const inviteUser = async (req, res) => {
+	//todo: check validity of email
 	const { email } = req.body;
-	console.log("EMAIL", email);
 	const { id } = req.user;
 	try {
 		const maybeUser = await useGetUserByEmail(email);
@@ -58,7 +58,9 @@ export const inviteUser = async (req, res) => {
 			html: '<p>Click <a href="http://localhost:5173/login">here</a> to verify your email</p>',
 		};
 
-		await useSendEmail(mailOptions);
+		await useSendEmail(mailOptions, () => {
+			throw new Error("Something went wrong");
+		});
 
 		//todo: remove verifixationtoken form response
 		res
@@ -68,7 +70,6 @@ export const inviteUser = async (req, res) => {
 					verificationToken
 			);
 	} catch (error) {
-		console.log("ERROR", error);
 		res.status(500).send("Something went wrong, try again later");
 	}
 };
