@@ -51,7 +51,8 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
 	const id = req.params.id;
-	const updated = await useUpdateUser(req.body, id);
+	const adminId = req.user.id;
+	const updated = await useUpdateUser({ ...req.body, updatedBy: adminId }, id);
 
 	try {
 		if (updated[0] === 0) {
