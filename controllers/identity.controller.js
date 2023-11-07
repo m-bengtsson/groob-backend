@@ -8,7 +8,10 @@ import {
   useUpdateUser,
   useCreateUser,
 } from "../hooks/useUser.js";
-import { usePassWordValidate } from "../hooks/useValidateRegEx.js";
+import {
+  useEmailValidate,
+  usePassWordValidate,
+} from "../hooks/useValidateRegEx.js";
 import bcrypt from "bcrypt";
 import useSendEmail from "../hooks/useSendEmail.js";
 import { setFailedAttempts } from "../middleware/rateLimit.js";
@@ -28,7 +31,9 @@ export const inviteUser = async (req, res) => {
   //todo: check validity of email
   const { email } = req.body;
   const { id } = req.user;
+
   try {
+    useEmailValidate(email);
     const maybeUser = await useGetUserByEmail(email);
     if (maybeUser) {
       return res.status(400).send("Neej va syynd, emailen används redan :'(");
@@ -55,7 +60,7 @@ export const inviteUser = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Email verification",
-      html: '<p>Click <a href="http://localhost:5173/login">here</a> to verify your email</p>',
+      html: `<p>Click <a href="http://localhost:5173/signup/${verificationToken}">here</a> to verify your email</p>`,
     };
 
     await useSendEmail(mailOptions, () => {
@@ -63,12 +68,7 @@ export const inviteUser = async (req, res) => {
     });
 
     //todo: remove verifixationtoken form response
-    res
-      .status(200)
-      .send(
-        "Vi har skickat ett mail till din angivna mailadress" +
-          verificationToken
-      );
+    res.status(200).send("Vi har skickat ett mail till din angivna mailadress");
   } catch (error) {
     res.status(500).send("Something went wrong, try again later");
   }
