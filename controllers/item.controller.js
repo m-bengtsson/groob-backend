@@ -47,7 +47,8 @@ export const createItem = async (req, res) => {
 
 export const updateItem = async (req, res) => {
 	const id = req.params.id;
-	const updated = await useUpdateItem(req.body, id);
+	const adminId = req.user.id;
+	const updated = await useUpdateItem({ ...req.body, updatedBy: adminId }, id);
 	try {
 		if (updated[0] === 0) {
 			return res.status(400).send("Something went wrong, try again later");
