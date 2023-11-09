@@ -13,7 +13,7 @@ const authenticate = async (req, res, next) => {
 	const refreshToken = req.cookies["refreshToken"];
 
 	if (!accessToken && !refreshToken) {
-		return res.status(401).send("No accesstoken provided.");
+		return res.status(401).send("No tokens provided.");
 	}
 
 	try {
@@ -30,6 +30,10 @@ const authenticate = async (req, res, next) => {
 				where: { token: refreshToken },
 			});
 
+			if (!maybeTokenExists) {
+				return res.status(401).send("Invalid Token.");
+			}
+
 			if (maybeTokenExists) {
 				const decoded = jwt.verify(refreshToken, secret_key_refresh);
 
@@ -38,13 +42,9 @@ const authenticate = async (req, res, next) => {
 				const accessToken = jwt.sign(user.dataValues, secret_key_access, {
 					expiresIn: "15m",
 				});
-				res
-					.cookie("refreshToken", refreshToken, {
-						httpOnly: true,
-						sameSite: "strict",
-					})
-					.header("Authorization", accessToken)
-					.send("New accesstoken");
+				req.user = decoded;
+				res.header("Authorization", [accessToken]);
+				next();
 			}
 		} catch (error) {
 			return res.status(401).send("Invalid Token.");
