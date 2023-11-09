@@ -17,10 +17,12 @@ Backend code for Groob-frontend - a secure e-commerce application with node.js, 
 npm install
 ```
 
+#### Setup a working mysql server connection
+
 #### Setup .env file
 
 - Create .env-file
-- Copy and paste content from example.env
+- Copy and paste content from example.env - change the values to your local values
 
 #### Setup database
 
