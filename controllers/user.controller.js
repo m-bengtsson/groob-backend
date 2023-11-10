@@ -68,7 +68,21 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
 	const { id } = req.params;
+	const adminId = req.user.id;
+
 	try {
+		const deleteUpdate = {
+			name: "Deleted",
+			email: `${id.substring(0, 10)}@${id.substring(10, 20)}`,
+			updatedBy: adminId,
+		};
+
+		const updated = await useUpdateUser({ ...deleteUpdate }, id);
+
+		if (updated === 0) {
+			return res.status(400).send("Something went wrong, try again later");
+		}
+
 		const destroyed = await useDeleteUser(id);
 
 		if (destroyed === 0) {
