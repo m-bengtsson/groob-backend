@@ -26,8 +26,7 @@ export const getAllItems = async (req, res) => {
       return res.status(200).send(publicItems);
     }
 
-    const items = await useGetItems();
-
+    const items = await useGetItems(undefined, searchQuery);
     if (!items) {
       return res.status(500).send("Something went wrong, try again later");
     }
