@@ -7,6 +7,7 @@ import {
 } from "../hooks/useItem.js";
 
 export const getAllItems = async (req, res) => {
+  console.log("commit");
   let searchQuery = req.query.title;
 
   if (searchQuery) {
@@ -25,7 +26,6 @@ export const getAllItems = async (req, res) => {
       const publicItems = await useGetItems(["id", "title", "description"]);
       return res.status(200).send(publicItems);
     }
-
     const items = await useGetItems(undefined, searchQuery);
     if (!items) {
       return res.status(500).send("Something went wrong, try again later");
