@@ -2,14 +2,16 @@ import express from "express";
 import authenticate from "../middleware/authenticate.js";
 import { isAdmin } from "../middleware/authorize.js";
 import {
-	getAllItems,
-	getItem,
-	createItem,
-	updateItem,
-	deleteItem,
+  getAllItems,
+  getItem,
+  createItem,
+  updateItem,
+  deleteItem,
 } from "../controllers/item.controller.js";
 
 const router = express.Router();
+
+router.get("/public", getAllItems);
 
 router.use(authenticate);
 
