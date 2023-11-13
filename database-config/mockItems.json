@@ -2,6 +2,7 @@
 	{
 		"id": "ec59cfcf-c2b3-4082-97af-02b98cab0294",
 		"title": "Red socks ",
+		"price": "3452",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "15",
 		"createdBy": "36c5179f-6e18-428c-8ac2-4c590fc3e457"
@@ -9,6 +10,7 @@
 	{
 		"id": "05c0296e-5c0e-4fd9-b2d9-c6537dc78dfc",
 		"title": "Blue shirt",
+		"price": "4568",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "5345",
 		"createdBy": "e75bb9fb-7250-4504-a61b-c9011d295143"
@@ -16,6 +18,7 @@
 	{
 		"id": "7c6c085b-7d98-4eb5-be8d-79c3eefc036c",
 		"title": "Green pants",
+		"price": "293578",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "257",
 		"createdBy": "e75bb9fb-7250-4504-a61b-c9011d295143"
@@ -23,6 +26,7 @@
 	{
 		"id": "d03d74ce-84cd-422f-b9cf-ac68e1719221",
 		"title": "Yellow socks ",
+		"price": "48",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "568",
 		"createdBy": "6a99fb7c-9a91-4b6e-9917-e17d6940e8a6"
@@ -30,6 +34,7 @@
 	{
 		"id": "7bd353bf-64a4-479d-9215-b9bdb6d4b32f",
 		"title": "orange shirt",
+		"price": "23459",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "535",
 		"createdBy": "6a99fb7c-9a91-4b6e-9917-e17d6940e8a6"
@@ -37,6 +42,7 @@
 	{
 		"id": "96a0fabd-279b-4b4a-a705-e64d5787c022",
 		"title": "Green sandals",
+		"price": "29324",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "18",
 		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"
@@ -44,6 +50,7 @@
 	{
 		"id": "f66622e7-1d62-4db1-8cb1-55607ee5f480",
 		"title": "Skyblue socks ",
+		"price": "92345",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "53",
 		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"
@@ -51,6 +58,7 @@
 	{
 		"id": "7fc4674d-1102-4f60-89f2-7561f3cc47c2",
 		"title": "Brown shirt",
+		"price": "34545",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "5001",
 		"createdBy": "e75bb9fb-7250-4504-a61b-c9011d295143"
@@ -58,6 +66,7 @@
 	{
 		"id": "ff774859-9247-4379-b1f2-d1f2a86235f6",
 		"title": "Black blazer",
+		"price": "3459",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "34",
 		"createdBy": "6a99fb7c-9a91-4b6e-9917-e17d6940e8a6"
@@ -65,6 +74,7 @@
 	{
 		"id": "d81c48c0-3926-45e4-b722-8ab60e8845cb",
 		"title": "Red top ",
+		"price": "8235",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "2",
 		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"
@@ -72,6 +82,7 @@
 	{
 		"id": "67dfes6e-sdfe-4s99-c2a9-c6548dhrodfc",
 		"title": "Blue shoes",
+		"price": "82234",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "523",
 		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"
@@ -79,6 +90,7 @@
 	{
 		"id": "sk59ap5b-7er8-4ejs-rt8d-kwl6jcfc038g",
 		"title": "Pink shorts",
+		"price": "87345",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla enim et odio placerat lacinia. Suspendisse tincidunt, orci id faucibus vestibulum, leo felis tincidunt dolor, eu pretium eros nunc ac nunc.",
 		"numberOfItems": "88",
 		"createdBy": "5319af1f-d8fb-4e0c-9afc-725e6ca368f7"

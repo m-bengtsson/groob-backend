@@ -12,10 +12,15 @@ const itemModel = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(36),
 				allowNull: false,
 			},
+			price: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
 			description: {
 				type: DataTypes.TEXT({ length: "long" }),
 				allowNull: false,
 			},
+
 			numberOfItems: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
