@@ -6,8 +6,8 @@ const Item = db.item;
 
 //Op.like = case insensitive
 // % allow matching anything before and after the searched query
-export const useGetItems = async (searchQuery) => {
-  if (searchQuery) {
+export const useGetItems = async (publicAttributes, searchQuery) => {
+  if (searchQuery && !publicAttributes) {
     const foundItems = await Item.findAll({
       where: {
         title: {
@@ -18,8 +18,20 @@ export const useGetItems = async (searchQuery) => {
     return foundItems;
   }
 
-  if (publicAttributes) {
+  if (publicAttributes && !searchQuery) {
     const foundItems = await Item.findAll({ attributes: publicAttributes });
+    return foundItems;
+  }
+
+  if (publicAttributes && searchQuery) {
+    const foundItems = await Item.findAll({
+      attributes: publicAttributes,
+      where: {
+        title: {
+          [Op.like]: `%${searchQuery}%`,
+        },
+      },
+    });
     return foundItems;
   }
   const foundItems = await Item.findAll();
