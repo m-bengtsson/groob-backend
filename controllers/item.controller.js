@@ -5,7 +5,6 @@ import {
   useUpdateItem,
   useDeleteItem,
 } from "../hooks/useItem.js";
-import db from "../models/index.js";
 
 export const getAllItems = async (req, res) => {
   let searchQuery = req.query.title;
@@ -23,9 +22,7 @@ export const getAllItems = async (req, res) => {
     const user = req.user;
 
     if (!user) {
-      const publicItems = await db.item.findAll({
-        attributes: ["title", "id"],
-      });
+      const publicItems = await useGetItems(["id", "title", "description"]);
       return res.status(200).send(publicItems);
     }
 
