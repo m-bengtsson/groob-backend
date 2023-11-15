@@ -4,5 +4,12 @@ module.exports = {
   extends: ["eslint:recommended"],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@babel/eslint-parser",
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+  parserOptions: {
+    requireConfigFile: false,
+    ecmaVersion: "latest",
+    sourceType: "module",
+    babelOptions: {
+      plugins: ["@babel/plugin-syntax-import-assertions"],
+    },
+  },
 };
