@@ -46,6 +46,7 @@ export const useGetItem = async (id) => {
 export const useCreateItem = async ({
   title,
   description,
+  price,
   numberOfItems,
   createdBy,
 }) => {
@@ -53,6 +54,7 @@ export const useCreateItem = async ({
     id: uuidv4(),
     title,
     description,
+    price,
     numberOfItems,
     createdBy,
   });
