@@ -46,12 +46,12 @@ export const getItem = async (req, res) => {
 };
 
 export const createItem = async (req, res) => {
-  const { title, description, numberOfItems } = req.body;
+  const { title, description, price, numberOfItems } = req.body;
 
   const { id } = req.user;
   const createdBy = id;
 
-  if (!title || !description || !createdBy || !numberOfItems) {
+  if (!title || !description || !createdBy || !price || !numberOfItems) {
     return res.status(400).send("All fields required");
   }
 
@@ -59,6 +59,7 @@ export const createItem = async (req, res) => {
     const created = await useCreateItem({
       title,
       description,
+      price,
       numberOfItems,
       createdBy,
     });
