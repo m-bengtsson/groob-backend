@@ -11,13 +11,13 @@ import { limiter } from "./middleware/rateLimit.js";
 const app = express();
 db.sequelize.sync();
 app.use(
-	cors({
-		origin: "http://localhost:5173",
-		exposedHeaders: "Authorization",
-		credentials: true,
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
-	})
+  cors({
+    origin: "http://localhost:5173",
+    exposedHeaders: "Authorization",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
+  })
 );
 app.use(cookies());
 app.use(express.json());
@@ -28,11 +28,11 @@ app.use("/api/users", usersRoute);
 app.use("/api/identity", identityRoute);
 
 app.get("/api/db", async (req, res) => {
-	const User = db.user;
-	const allUsers = await User.findOne({ where: { name: "Groob" } });
-	res.status(200).send(allUsers);
+  const User = db.user;
+  const allUsers = await User.findOne({ where: { name: "Groob" } });
+  res.status(200).send(allUsers);
 });
 
 app.listen(8080, () => {
-	console.log("Server running on port 8080");
+  console.log("Server running on port 8080");
 });

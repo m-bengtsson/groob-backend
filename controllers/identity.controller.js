@@ -196,10 +196,10 @@ export const loginUser = async (req, res) => {
   const user = { email, name, id };
   try {
     const accessToken = jwt.sign(user, secret_key_access, {
-      expiresIn: "15m",
+      expiresIn: "10s",
     });
     const refreshToken = jwt.sign(user, secret_key_refresh, {
-      expiresIn: "1d",
+      expiresIn: "3d",
     });
 
     await db.refreshToken.create({
